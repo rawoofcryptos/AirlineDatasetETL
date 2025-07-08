@@ -8,24 +8,6 @@ CREATE TABLE DimDate (
     YearQuarter VARCHAR(7) NOT NULL
 );
 
-Select * from DimDate where Year=2025
-Select * from DimAirline;
-Select * from DimAirport;
-Select * From FactFlightSummary;
-
-Truncate table FactFlightSummary;
-Truncate TAble DimAirline;
-Truncate table DimAirport;
-Truncate Table DimDate;
-
-Delete From DimAirline;
-Delete from DimAirport;
-Delete from DimDate;
-
-
-DBCC CHECKIDENT ('DimAirline', RESEED, 0);
-DBCC CHECKIDENT ('DimAirport', RESEED, 0);
-
 CREATE TABLE DimAirline (
     AirlineKey INT PRIMARY KEY IDENTITY(1,1), -- Surrogate Key
     AirlineCode VARCHAR(5) NOT NULL,         -- Natural Key
@@ -68,3 +50,21 @@ CREATE TABLE FactFlightSummary (
     FOREIGN KEY (AirlineKey) REFERENCES DimAirline(AirlineKey),
     FOREIGN KEY (AirportKey) REFERENCES DimAirport(AirportKey)
 );
+
+Select top 10* from DimDate where Year=2025
+Select * from DimAirline;
+Select top 10 * from DimAirport;
+Select top 10 * From FactFlightSummary;
+
+Truncate table FactFlightSummary;
+Truncate TAble DimAirline;
+Truncate table DimAirport;
+Truncate Table DimDate;
+
+Delete From DimAirline;
+Delete from DimAirport;
+Delete from DimDate;
+
+
+DBCC CHECKIDENT ('DimAirline', RESEED, 0);
+DBCC CHECKIDENT ('DimAirport', RESEED, 0);
