@@ -11,8 +11,8 @@
   DTS:LocaleID="16393"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{3220F728-1D5A-4A85-BC93-79E13D285936}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{F2D01BF3-FF7C-4670-97EA-78D5B5FDBEE8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -1539,28 +1539,28 @@ where [refTable].[Year] = ? and [refTable].[Month] = ?</property>
         <NodeLayout
           Size="127.2,41.6"
           Id="Package\Fact Table Data Flow\Fact Table"
-          TopLeft="1021.66661084526,264.333331495192" />
+          TopLeft="1020.83327755746,264.333331495192" />
         <EdgeLayout
           Id="Package\Fact Table Data Flow.Paths[Lookup Match Output2]"
           TopLeft="943.133290807077,285.566664825512">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="78.5333200381866,0"
+              EndConnector="77.6999867503847,0"
               Start="0,0"
-              End="71.0333200381866,0">
+              End="70.1999867503847,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="71.0333200381866,0" />
+                    End="70.1999867503847,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-12.6747266996567,5,96.3827734375,11.609375"
+              BoundingBox="-13.0913933435576,5,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
