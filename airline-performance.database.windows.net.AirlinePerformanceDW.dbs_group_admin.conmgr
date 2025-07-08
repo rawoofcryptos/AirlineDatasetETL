@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="airline-performance.database.windows.net.AirlinePerformanceDW.dbs_group_admin"
+  DTS:DTSID="{10B6B8DB-EB31-4C5F-8316-F12B2D6AC0C0}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=airline-performance.database.windows.net;User ID=dbs_group_admin;Initial Catalog=AirlinePerformanceDW;Provider=MSOLEDBSQL19.1;Persist Security Info=True;Application Name=SSIS-AirlineDatasetETL-{10B6B8DB-EB31-4C5F-8316-F12B2D6AC0C0}airline-performance.database.windows.net.AirlinePerformanceDW.dbs;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqzm7lrj77UGb1kvQqJ4LmgAAAAACAAAAAAAQZgAAAAEAACAAAACosjf18OmjNu21i3T2v/wdbRGsdydm4Fe9pcUayjr/ywAAAAAOgAAAAAIAACAAAABJh/2AS8fpiCQJcxYGkbEmCH2w3gRZBiex7M51gXSgfYAAAACa5xreqKDcMSGco1x1FeTC8o2K39+9Tox4mbYeYPI9L8+L1fD2wd+ya0K3AFjkhioCDOvhHEGhP4IjuVIEhJPU/3oncFrhV8MmaiizFJEAbBcp8iijl1sPL8g6mTKgOyoVyj4wETtd3ckyib7cm8KITh7Or7LDcMf/IZi4LYz0OEAAAABZaje4nVyrpX+pGea8rdDRRdmF/rGiOj6HAUn7ApkwTdrXms+RaGD3BkZnjScP7t1qN4g79R2wqghGo5rwifUn</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

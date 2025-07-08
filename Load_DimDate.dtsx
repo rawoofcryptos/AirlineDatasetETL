@@ -11,8 +11,8 @@
   DTS:LocaleID="16393"
   DTS:ObjectName="DimDate"
   DTS:PackageType="5"
-  DTS:VersionBuild="26"
-  DTS:VersionGUID="{C4F335C7-A487-439A-8FD5-B43F7F3E1BD7}">
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{08877997-56AC-450C-A585-D8DA0E202106}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -29,7 +29,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqzm7lrj77UGb1kvQqJ4LmgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADC+wgoFlaDlUqIupDmJ+jJmPHbyB8Y6dG562bV1FFoLwAAAAAOgAAAAAIAACAAAACwOJgjv8qrZ9i2c0O06pIx4PtV1KwlsmoE6EGDxpf5NCAAAACKwlEcByJWtN/f3mZtBNaUnEhASLO+yood0AqOGCf3DkAAAAATIYmEW1wh+ldM1K1/Bj939Vt8RZEJGoI/qx7X9qVGzh5KZeWMPb+4CfymWy3pgmfmuNDCbx0vMsKjJavzRMup</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqzm7lrj77UGb1kvQqJ4LmgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABuJzLaCFbnYCeZzs2Tf9NZpnpMkdfmHRcaq23zSWB/gwAAAAAOgAAAAAIAACAAAABKLyZX7fk9qRvwKgQpz3VAQPg6xraPm3HI1ZxCx/e5niAAAAD5ydZrAFE2GY+NgFNE/ayOhaUgNeCKQKf1SHAb2CDq+kAAAABd7TKTpgSRVLZiWQlzA6OfHec6g9Fo8JR7lmBnaoVasY3RIPg2KoGm8Pi1nRVXF/qmYf1+QL+xBxVv6iVofRk6</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -243,6 +243,157 @@
           version="1">
           <components>
             <component
+              refId="Package\Date Dimension\Derived Key,Name,Quater"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Key,Name,Quater"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Date Dimension\Derived Key,Name,Quater.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Date Dimension\Derived Key,Name,Quater.Inputs[Derived Column Input].Columns[year]"
+                      cachedDataType="i2"
+                      cachedName="year"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Date Dimension\Sort.Outputs[Sort Output].Columns[year]" />
+                    <inputColumn
+                      refId="Package\Date Dimension\Derived Key,Name,Quater.Inputs[Derived Column Input].Columns[month]"
+                      cachedDataType="i1"
+                      cachedName="month"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]" />
+                    <inputColumn
+                      refId="Package\Date Dimension\Derived Key,Name,Quater.Inputs[Derived Column Input].Columns[carrier]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="carrier"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Date Dimension\Sort.Outputs[Sort Output].Columns[carrier]" />
+                    <inputColumn
+                      refId="Package\Date Dimension\Derived Key,Name,Quater.Inputs[Derived Column Input].Columns[airport]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="airport"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Date Dimension\Sort.Outputs[Sort Output].Columns[airport]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Date Dimension\Derived Key,Name,Quater.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Output].Columns[DateKey]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="12"
+                      lineageId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Output].Columns[DateKey]"
+                      name="DateKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,12,1252)((DT_STR,4,1252)#{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[year]} + [RIGHT]("0" + (DT_STR,2,1252)#{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]},2) + #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[carrier]} + #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[airport]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,12,1252)((DT_STR,4,1252)year + RIGHT("0" + (DT_STR,2,1252)month,2) + carrier + airport)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Output].Columns[MonthName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Output].Columns[MonthName]"
+                      name="MonthName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,20,1252)(#{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 1 ? "January" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 2 ? "February" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 3 ? "March" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 4 ? "April" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 5 ? "May" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 6 ? "June" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 7 ? "July" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 8 ? "August" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 9 ? "September" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 10 ? "October" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 11 ? "November" : "December")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,20,1252)(month == 1 ? "January" : month == 2 ? "February" : month == 3 ? "March" : month == 4 ? "April" : month == 5 ? "May" : month == 6 ? "June" : month == 7 ? "July" : month == 8 ? "August" : month == 9 ? "September" : month == 10 ? "October" : month == 11 ? "November" : "December")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Output].Columns[Quarter]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Output].Columns[Quarter]"
+                      name="Quarter"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">((#{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} + 2) / 3)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">((month + 2) / 3)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Date Dimension\Derived Key,Name,Quater.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Date Dimension\Derived YearQuarter"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -265,7 +416,7 @@
                       refId="Package\Date Dimension\Derived YearQuarter.Inputs[Derived Column Input].Columns[Quarter]"
                       cachedDataType="i4"
                       cachedName="Quarter"
-                      lineageId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Output].Columns[Quarter]" />
+                      lineageId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Output].Columns[Quarter]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -293,7 +444,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_STR,7,1252)((DT_WSTR,4)#{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[year]} + "-Q" + (DT_WSTR,1)#{Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Output].Columns[Quarter]})</property>
+                          name="Expression">(DT_STR,7,1252)((DT_WSTR,4)#{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[year]} + "-Q" + (DT_WSTR,1)#{Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Output].Columns[Quarter]})</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -916,157 +1067,6 @@
               </outputs>
             </component>
             <component
-              refId="Package\Date Dimension\Key,Name,Quater"
-              componentClassID="Microsoft.DerivedColumn"
-              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="Key,Name,Quater"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\Date Dimension\Key,Name,Quater.Inputs[Derived Column Input]"
-                  description="Input to the Derived Column Transformation"
-                  name="Derived Column Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Date Dimension\Key,Name,Quater.Inputs[Derived Column Input].Columns[year]"
-                      cachedDataType="i2"
-                      cachedName="year"
-                      cachedSortKeyPosition="1"
-                      lineageId="Package\Date Dimension\Sort.Outputs[Sort Output].Columns[year]" />
-                    <inputColumn
-                      refId="Package\Date Dimension\Key,Name,Quater.Inputs[Derived Column Input].Columns[month]"
-                      cachedDataType="i1"
-                      cachedName="month"
-                      cachedSortKeyPosition="2"
-                      lineageId="Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]" />
-                    <inputColumn
-                      refId="Package\Date Dimension\Key,Name,Quater.Inputs[Derived Column Input].Columns[carrier]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="2"
-                      cachedName="carrier"
-                      cachedSortKeyPosition="3"
-                      lineageId="Package\Date Dimension\Sort.Outputs[Sort Output].Columns[carrier]" />
-                    <inputColumn
-                      refId="Package\Date Dimension\Key,Name,Quater.Inputs[Derived Column Input].Columns[airport]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="3"
-                      cachedName="airport"
-                      cachedSortKeyPosition="4"
-                      lineageId="Package\Date Dimension\Sort.Outputs[Sort Output].Columns[airport]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Output]"
-                  description="Default Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  name="Derived Column Output"
-                  synchronousInputId="Package\Date Dimension\Key,Name,Quater.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Output].Columns[DateKey]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      length="12"
-                      lineageId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Output].Columns[DateKey]"
-                      name="DateKey"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">(DT_STR,12,1252)((DT_STR,4,1252)#{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[year]} + [RIGHT]("0" + (DT_STR,2,1252)#{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]},2) + #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[carrier]} + #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[airport]})</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">(DT_STR,12,1252)((DT_STR,4,1252)year + RIGHT("0" + (DT_STR,2,1252)month,2) + carrier + airport)</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Output].Columns[MonthName]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      length="20"
-                      lineageId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Output].Columns[MonthName]"
-                      name="MonthName"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">(DT_STR,20,1252)(#{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 1 ? "January" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 2 ? "February" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 3 ? "March" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 4 ? "April" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 5 ? "May" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 6 ? "June" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 7 ? "July" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 8 ? "August" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 9 ? "September" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 10 ? "October" : #{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} == 11 ? "November" : "December")</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">(DT_STR,20,1252)(month == 1 ? "January" : month == 2 ? "February" : month == 3 ? "March" : month == 4 ? "April" : month == 5 ? "May" : month == 6 ? "June" : month == 7 ? "July" : month == 8 ? "August" : month == 9 ? "September" : month == 10 ? "October" : month == 11 ? "November" : "December")</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Output].Columns[Quarter]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Output].Columns[Quarter]"
-                      name="Quarter"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">((#{Package\Date Dimension\Sort.Outputs[Sort Output].Columns[month]} + 2) / 3)</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">((month + 2) / 3)</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Error Output]"
-                  description="Error Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Derived Column Error Output"
-                  synchronousInputId="Package\Date Dimension\Key,Name,Quater.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\Date Dimension\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -1159,7 +1159,7 @@
                       cachedLength="12"
                       cachedName="DateKey"
                       externalMetadataColumnId="Package\Date Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
-                      lineageId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Output].Columns[DateKey]" />
+                      lineageId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Output].Columns[DateKey]" />
                     <inputColumn
                       refId="Package\Date Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MonthName]"
                       cachedCodepage="1252"
@@ -1167,13 +1167,13 @@
                       cachedLength="20"
                       cachedName="MonthName"
                       externalMetadataColumnId="Package\Date Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonthName]"
-                      lineageId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Output].Columns[MonthName]" />
+                      lineageId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Output].Columns[MonthName]" />
                     <inputColumn
                       refId="Package\Date Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Quarter]"
                       cachedDataType="i4"
                       cachedName="Quarter"
                       externalMetadataColumnId="Package\Date Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Quarter]"
-                      lineageId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Output].Columns[Quarter]" />
+                      lineageId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Output].Columns[Quarter]" />
                     <inputColumn
                       refId="Package\Date Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[YearQuarter]"
                       cachedCodepage="1252"
@@ -1187,7 +1187,9 @@
                     isUsed="True">
                     <externalMetadataColumn
                       refId="Package\Date Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
-                      dataType="i4"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
                       name="DateKey" />
                     <externalMetadataColumn
                       refId="Package\Date Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
@@ -1914,7 +1916,7 @@
               refId="Package\Date Dimension.Paths[Derived Column Output]"
               endId="Package\Date Dimension\Derived YearQuarter.Inputs[Derived Column Input]"
               name="Derived Column Output"
-              startId="Package\Date Dimension\Key,Name,Quater.Outputs[Derived Column Output]" />
+              startId="Package\Date Dimension\Derived Key,Name,Quater.Outputs[Derived Column Output]" />
             <path
               refId="Package\Date Dimension.Paths[Derived Column Output1]"
               endId="Package\Date Dimension\OLE DB Destination.Inputs[OLE DB Destination Input]"
@@ -1927,7 +1929,7 @@
               startId="Package\Date Dimension\Flat File Source.Outputs[Flat File Source Output]" />
             <path
               refId="Package\Date Dimension.Paths[Sort Output]"
-              endId="Package\Date Dimension\Key,Name,Quater.Inputs[Derived Column Input]"
+              endId="Package\Date Dimension\Derived Key,Name,Quater.Inputs[Derived Column Input]"
               name="Sort Output"
               startId="Package\Date Dimension\Sort.Outputs[Sort Output]" />
           </paths>
@@ -1960,69 +1962,25 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="97.6,41.6"
-          Id="Package\Date Dimension\Sort"
-          TopLeft="347.499981013438,136.933332381116" />
-        <NodeLayout
           Size="151.2,41.6"
           Id="Package\Date Dimension\Flat File Source"
-          TopLeft="135.833325911728,136.066665720476" />
+          TopLeft="41.6666643901009,140.399999023676" />
         <NodeLayout
           Size="171.2,41.6"
           Id="Package\Date Dimension\OLE DB Destination"
           TopLeft="662.499963802598,36.3999997468789" />
         <NodeLayout
-          Size="161.6,41.6"
-          Id="Package\Date Dimension\Key,Name,Quater"
-          TopLeft="489.666640212967,132.899999114076" />
+          Size="200,41.6"
+          Id="Package\Date Dimension\Derived Key,Name,Quater"
+          TopLeft="424.66664376441,130.299999132156" />
         <NodeLayout
           Size="174.4,41.6"
           Id="Package\Date Dimension\Derived YearQuarter"
           TopLeft="682.166631334359,134.299999312957" />
-        <EdgeLayout
-          Id="Package\Date Dimension.Paths[Sort Output]"
-          TopLeft="445.099981013438,155.716665747596">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="44.5666591995295,0"
-              Start="0,0"
-              End="37.0666591995295,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="37.0666591995295,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Date Dimension.Paths[Flat File Source Output]"
-          TopLeft="287.033325911728,157.299999050796">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="60.4666551017105,0"
-              Start="0,0"
-              End="52.9666551017105,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="52.9666551017105,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="97.6,41.6"
+          Id="Package\Date Dimension\Sort"
+          TopLeft="272.499985111257,136.933332381116" />
         <EdgeLayout
           Id="Package\Date Dimension.Paths[Derived Column Output1]"
           TopLeft="769.366631334359,134.299999312957">
@@ -2059,18 +2017,62 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Date Dimension.Paths[Derived Column Output]"
-          TopLeft="651.266640212967,154.399999213516">
+          TopLeft="624.66664376441,153.099999222557">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="30.899991121392,0"
+              EndConnector="57.4999875699489,0"
               Start="0,0"
-              End="23.399991121392,0">
+              End="49.9999875699489,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="23.399991121392,0" />
+                    End="49.9999875699489,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Date Dimension.Paths[Sort Output]"
+          TopLeft="370.099985111257,154.416665756636">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54.566658653153,0"
+              Start="0,0"
+              End="47.066658653153,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47.066658653153,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Date Dimension.Paths[Flat File Source Output]"
+          TopLeft="192.866664390101,159.466665702396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79.6333207211562,0"
+              Start="0,0"
+              End="72.1333207211562,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="72.1333207211562,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
